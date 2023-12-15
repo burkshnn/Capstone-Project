@@ -12,7 +12,15 @@ Reads scraped property_sales data from Step 1, and collected secondary data from
 
 Since primary data is daily, but secondary data is anually or even less frequent, we used [scipy.CubicSpline](https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html#scipy.interpolate.CubicSpline) to interpolate quarterly data based on annual data.
 
+![interpolated immigration data](./images/interpolation.png)
+
 In the end, we created a [merged_dataset](./data_merge/merged_dataset.csv) that has the quarter and county with data merged from secondary data.
 
 ## Step 3) Machine Learning
 See [machine_learning](./machine_learning/machine_learning.ipynb) for more details.
+
+Tested machine learning models with splitting data into training (before 2019) and testing (after 2019) data and found that [Ridge regression model](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html) is the best model for our use case.
+
+After parameter tuning, we predicted future values of the features and finally predicted a forecast of housing prices in Ireland.
+
+![forecasted housing prices in dublin](./images/forecast.png)
